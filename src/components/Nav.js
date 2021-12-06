@@ -1,6 +1,7 @@
-import { List, ListItem, Grid, MenuItem } from '@mui/material'
+import { Grid, MenuItem } from '@mui/material'
 import { Link } from 'react-router-dom'
 import React from 'react'
+import { Box } from '@mui/system'
 const classes = {
     a: {
         color: 'white',
@@ -45,29 +46,29 @@ export default function Nav() {
 
     return (
         <Grid sx={classes.container}>
-            <List sx={classes.ul}>
-                <ListItem >
-                    <Link to="studentList" style={{ textDecoration: 'none' }}>
-                        <MenuItem sx={classes.a}>
-                            Student List
-                        </MenuItem>
-                    </Link>
-                </ListItem>
-                <ListItem >
-                    <Link to="studentEvaluation" style={{ textDecoration: 'none' }}>
-                        <MenuItem sx={classes.a}>
-                            Student Evaluation
-                        </MenuItem>
-                    </Link>
-                </ListItem>
-                <ListItem >
-                    <Link to="blog" style={{ textDecoration: 'none' }} >
-                        <MenuItem sx={classes.a}>
-                            Blog
-                        </MenuItem>
-                    </Link>
-                </ListItem>
-            </List>
+            <Box sx={classes.ul}>
+
+                <Link to="studentList" style={{ textDecoration: 'none' }}>
+                    <MenuItem sx={classes.a}>
+                        Student List
+                    </MenuItem>
+                </Link>
+
+
+                <Link to="studentEvaluation" style={{ textDecoration: 'none' }}>
+                    <MenuItem sx={classes.a}>
+                        Student Evaluation
+                    </MenuItem>
+                </Link>
+
+
+                <Link to="blog" style={{ textDecoration: 'none' }} >
+                    <MenuItem sx={classes.a}>
+                        Blog
+                    </MenuItem>
+                </Link>
+
+            </Box>
         </Grid>
     )
 }

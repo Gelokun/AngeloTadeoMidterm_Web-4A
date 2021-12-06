@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Grid, InputBase, Box, Popper } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Grid, InputBase, Box, Popper, Card } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import GridViewTwoToneIcon from '@mui/icons-material/GridViewTwoTone';
@@ -75,47 +75,49 @@ export default function Header() {
     const id = open ? 'simple-popper' : undefined;
 
     return (
-        <AppBar sx={classes.appbar}>
-            <Toolbar>
-                <Grid sx={{ flexGrow: 1 }}>
-                    <Typography
-                        component="div"
-                        sx={{ fontSize: { lg: 24, xs: 20 } }}
-                    >
-                        Student Review
-                        <IconButton
-                            size="medium"
-                            edge="end"
-                            color="inherit"
-                            aria-label="open drawer"
-                            sx={{ margin: 2 }}
+        <Box>
+            <AppBar sx={classes.appbar}>
+                <Toolbar>
+                    <Grid sx={{ flexGrow: 1 }}>
+                        <Typography
+                            component="div"
+                            sx={{ fontSize: { lg: 24, xs: 20 } }}
                         >
-                            <GridViewTwoToneIcon sx={{ fontSize: 24 }} />
-                        </IconButton>
-                    </Typography>
-                </Grid >
+                            Student Review
+                            <IconButton
+                                size="medium"
+                                edge="end"
+                                color="inherit"
+                                aria-label="open drawer"
+                                sx={{ margin: 2 }}
+                            >
+                                <GridViewTwoToneIcon sx={{ fontSize: 24 }} />
+                            </IconButton>
+                        </Typography>
+                    </Grid >
 
-                <Nav />
+                    <Nav />
 
-                <Box component='span' sx={{ flexGrow: 1 }} />
-                <IconButton aria-describedby={id} type="button" onClick={handleClick}>
-                    <AccountCircleOutlinedIcon />
-                </IconButton>
-                <Popper id={id} open={open} anchorEl={anchorEl} placement='bottom'>
-                    <Box sx={{ marginTop: { lg: 2.5, xs: 5.5 }, marginRight: { lg: -5.5, xs: 2.5 }, borderRadius: 2, border: 1, p: 1, bgcolor: 'background.paper' }}>
-                        <Login />
-                    </Box>
-                </Popper>
-                <Search>
-                    <SearchIconWrapper>
-                        <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                        placeholder="Search…"
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </Search>
-            </Toolbar>
-        </AppBar >
+                    <Box component='span' sx={{ flexGrow: 1 }} />
+                    <IconButton aria-describedby={id} type="button" onClick={handleClick}>
+                        <AccountCircleOutlinedIcon />
+                    </IconButton>
+                    <Popper id={id} open={open} anchorEl={anchorEl} placement='bottom'>
+                        <Card sx={{ marginTop: { lg: 2.5, xs: 5.5 }, marginRight: { lg: -5.5, xs: 2.5 }, borderRadius: 2, border: 1, p: 1, bgcolor: 'background.paper' }}>
+                            <Login />
+                        </Card>
+                    </Popper>
+                    <Search>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search…"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
+                </Toolbar>
+            </AppBar >
+        </Box>
     );
 }
