@@ -11,7 +11,7 @@ export default function Comment() {
         setChecked((prev) => !prev);
     };
     return (
-        <Grid>
+        <Grid sx={{padding: '30px'}}>
             <Card sx={{ padding: 2, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                 <Avatar />
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -41,7 +41,7 @@ export default function Comment() {
                         </Button>
                     </Box>
                     <Collapse in={checked}>
-                        <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                             <TextField
                                 id="outlined-multiline-static"
                                 multiline
@@ -49,7 +49,7 @@ export default function Comment() {
                                 sx={{ width: 600 }}
                             />
                             <Button variant='contained' sx={{ textTransform: 'none', margin: 2, color: 'white', widh: '143px' }}>Submit</Button>
-                        </Card>
+                        </Box>
                     </Collapse>
                 </Box>
 

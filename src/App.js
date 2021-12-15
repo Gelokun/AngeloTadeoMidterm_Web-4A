@@ -6,6 +6,7 @@ import store from './redux/store';
 import Navigation from './pages/Navigation';
 
 export default function App() {
+
   const THEME = createTheme(theme);
   return (
     <Provider store={store}>

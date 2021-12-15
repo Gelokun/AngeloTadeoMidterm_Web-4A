@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
-
-import { Grid, TextField, Typography, OutlinedInput, InputAdornment, IconButton, FormControl, InputLabel, Button } from '@mui/material'
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Box, Grid, Button, Typography } from '@mui/material'
+import { ImGoogle2 } from 'react-icons/im'
+import { GrFacebook } from 'react-icons/gr'
+import { FaTwitterSquare } from 'react-icons/fa'
+import { setLoggedInUser, getLoggedInUser } from '../redux/action/userAction'
 
 const classes = {
     container: {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-    },
-    myTextField: {
-        width: 250,
-        margin: 1,
+        padding: 3
     },
     myTitle: {
-        fontSize: '2rem',
+        fontSize: '18px',
         fontFamily: 'Roboto',
         color: 'white'
     },
     myText: {
-        fontSize: '1rem',
+        fontSize: '12px',
         opacity: '0.7',
         textAlign: 'center',
         fontFamily: 'Roboto',
     },
-    myLabels: {
+    myIcons: {
         fontSize: '1rem',
         paddingLeft: 1,
         textAlign: 'center',
@@ -34,58 +33,30 @@ const classes = {
 }
 
 export default function Login() {
+    const dispatch = useDispatch();
+    
+    const handleClick = (e) => {
+        dispatch(setLoggedInUser())
+    }
+    useEffect(() => {
+        dispatch(getLoggedInUser())
+    }, [dispatch])
 
-    const [payload, setPayload] = useState({
-        email: '',
-        password: '',
-        showPassword: false,
-    });
-
-    const handleChange = (prop) => (event) => {
-        setPayload({ ...payload, [prop]: event.target.value });
-    };
-
-    const handleClickShowPassword = () => {
-        setPayload({
-            ...payload,
-            showPassword: !payload.showPassword,
-        });
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
     return (
         <Grid container sx={classes.container}>
-            <Typography sx={classes.myTitle}>Sign in</Typography>
-
-            <TextField sx={classes.myTextField} label="Email" variant="outlined" size='small' />
-
-            <FormControl sx={classes.myTextField} variant="outlined" size='small'>
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={payload.showPassword ? 'text' : 'password'}
-                    value={payload.password}
-                    onChange={handleChange('password')}
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {payload.showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Password"
-                />
-            </FormControl>
-
-            <Button variant="contained" color='primary' sx={{ textTransform: 'none' }}><Typography sx={{ fontFamily: 'Roboto', fontSize: '1rem' }}>Login</Typography></Button>
-
+            <Typography sx={classes.myTitle}>Sign In</Typography>
+            <Typography sx={classes.myText}>Sign in to review and rate students</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                <Button>
+                    <GrFacebook size={35} color='#4267B2' style={{ margin: 5 }} />
+                </Button>
+                <Button onClick={handleClick}>
+                    <ImGoogle2 size={35} color='#4285F4' style={{ margin: 5 }} />
+                </Button>
+                <Button>
+                    <FaTwitterSquare size={35} color='#00ACEE' style={{ margin: 5 }} />
+                </Button>
+            </Box>
         </Grid>
     )
 }
